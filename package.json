@@ -1,0 +1,61 @@
+{
+  "name": "personal_website",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "start": "react-scripts start",
+    "genpwaicons": "npx pwa-asset-generator ./src/ui/static/images/logo.png ./public/icons -i ./public/index.html -m ./public/manifest.json -b \"#6a99ad\" -f true",
+    "genfavicon16": "convert -resize x16 -gravity center -crop 16x16+0+0 ./src/ui/static/images/logo.png -flatten -colors 256 -background transparent ./public/icons/favicon-16.ico",
+    "genfavicon32": "convert -resize x32 -gravity center -crop 32x32+0+0 ./src/ui/static/images/logo.png -flatten -colors 256 -background transparent ./public/icons/favicon-32.ico",
+    "genfavicon48": "convert -resize x48 -gravity center -crop 48x48+0+0 ./src/ui/static/images/logo.png -flatten -colors 256 -background transparent ./public/icons/favicon-48.ico",
+    "genfavicon196": "convert -resize x196 -gravity center -crop 196x196+0+0 ./src/ui/static/images/logo.png -flatten -colors 256 -background transparent ./public/icons/favicon-196.png",
+    "genfavicons": "npm run genfavicon16 && npm run genfavicon32 && npm run genfavicon48 && npm run genfavicon196",
+    "genicons": "npm run genfavicons && npm run genpwaicons",
+    "prebuild": "rm -rf build && GENERATE_SOURCEMAP=false react-scripts build",
+    "build": "gzip -r ./build && gunzip -r ./build/icons ./build/static/media",
+    "postbuild": "node scripts/build_renamer.js && rm -rf ./build/.DS_Store",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "dependencies": {
+    "@material-ui/core": "^4.9.0",
+    "@material-ui/icons": "^4.5.1",
+    "localforage": "^1.7.3",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "react-router-dom": "^5.1.2",
+    "react-transition-group": "^4.0.1"
+  },
+  "devDependencies": {
+    "@types/jest": "^24.0.24",
+    "@types/node": "^13.1.8",
+    "@types/react": "^16.9.19",
+    "@types/react-dom": "^16.9.4",
+    "@types/react-router-dom": "^5.1.2",
+    "@types/react-transition-group": "^4.2.3",
+    "@typescript-eslint/eslint-plugin": "^2.12.0",
+    "@typescript-eslint/parser": "^2.12.0",
+    "eslint": "^6.8.0",
+    "eslint-config-prettier": "^6.7.0",
+    "eslint-config-react": "^1.1.7",
+    "eslint-plugin-prettier": "^3.1.2",
+    "eslint-plugin-react": "^7.16.0",
+    "eslint-plugin-react-hooks": "^2.3.0",
+    "prettier": "^1.19.1",
+    "react-scripts": "^3.2.0",
+    "typescript": "^3.7.4"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://drouk-aws/v1/repos/karoukis"
+  }
+}
